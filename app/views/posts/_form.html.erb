@@ -1,0 +1,38 @@
+<%= form_for(@post) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_area :content, id: "editor" %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  <script>
+    var editor = new Simditor({
+      textarea: $('#editor'),
+      placeholder: "write here",
+      upload: {
+        url: "http://up.qiniu.com",
+        params: {token: "A6Ahenyk8g7B0a42F5Yybkbk4mv37j7am9qbZDPf:4ZRpR3-aesKSJOcO_r4tihBiq5g=:eyJzY29wZSI6ImxwdGVzdCIsImRlYWRsaW5lIjoxNDA0NzIzNDU2LCJjYWxsYmFja1VybCI6Imh0dHA6Ly8xMTIuMTI0LjQ2LjM5OjMwMDAvY2FsbGJhY2siLCJjYWxsYmFja0JvZHkiOiJ7XCJrZXlcIjogJChrZXkpLCBcImhhc2hcIjogJChldGFnKSwgXCJ3aWR0aFwiOiAkKGltYWdlSW5mby53aWR0aCksIFwiaGVpZ2h0XCI6ICQoaW1hZ2VJbmZvLmhlaWdodCl9In0=", key: "lp1"},
+        connectionCount: 3,
+        leaveConfirm: "正在上传..."
+      },
+      pasteImage: true
+    });
+  </script>
+<% end %>
