@@ -27,12 +27,9 @@
       textarea: $('#editor'),
       placeholder: "write here",
       upload: {
-        url: "http://up.qiniu.com",
-        params: {token: "A6Ahenyk8g7B0a42F5Yybkbk4mv37j7am9qbZDPf:4ZRpR3-aesKSJOcO_r4tihBiq5g=:eyJzY29wZSI6ImxwdGVzdCIsImRlYWRsaW5lIjoxNDA0NzIzNDU2LCJjYWxsYmFja1VybCI6Imh0dHA6Ly8xMTIuMTI0LjQ2LjM5OjMwMDAvY2FsbGJhY2siLCJjYWxsYmFja0JvZHkiOiJ7XCJrZXlcIjogJChrZXkpLCBcImhhc2hcIjogJChldGFnKSwgXCJ3aWR0aFwiOiAkKGltYWdlSW5mby53aWR0aCksIFwiaGVpZ2h0XCI6ICQoaW1hZ2VJbmZvLmhlaWdodCl9In0=", key: "lp1"},
-        connectionCount: 3,
-        leaveConfirm: "正在上传..."
-      },
-      pasteImage: true
+        url: "http://localhost:3000/upload",
+        params: {a: 1}
+      }
     });
   </script>
 <% end %>

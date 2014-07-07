@@ -25,7 +25,16 @@ class PostsController < ApplicationController
   # POST /posts/upload
   
   def upload
-    render json: {"file_path" => "http://lptest.qiniudn.com/1404696952"}
+    puts params
+    # render json: {"file_path" => "http://lptest.qiniudn.com/1404696952"}
+    uploaded_io = params[:upload_file]
+    file_path = Rails.root.join('public', 'uploads', uploaded_io.original_filename)
+    File.open(file_path, 'wb') do |file|
+      file.write(uploaded_io.read)
+    end
+    file_url =  root_url + '/uploads/' + uploaded_io.original_filename
+    # render json: {"file_path" => "http://lptest.qiniudn.com/1404696952"}
+    render json: {file_path: file_url}
   end
 
   # POST /posts
@@ -76,6 +85,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :content)
+      params.permit!
     end
 end
